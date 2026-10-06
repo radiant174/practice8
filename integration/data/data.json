@@ -1,0 +1,16 @@
+{
+  "title": "自习室使用情况",
+  "period": "2026年春季学期 第1-16周",
+  "unit": "人次",
+  "source": "课程教学演示数据（非真实统计）",
+  "rooms": [
+    { "name": "图书馆二楼自习室", "floor": "2F", "open": true, "seats": 120, "usage": 3820 },
+    { "name": "二号教学楼201自习室", "floor": "2F", "open": true, "seats": 80, "usage": 2140 },
+    { "name": "图书馆三楼静音自习室", "floor": "3F", "open": true, "seats": 150, "usage": 4310 },
+    { "name": "图书馆三楼研讨间", "floor": "3F", "open": true, "seats": 30, "usage": 960 },
+    { "name": "三号教学楼305自习室", "floor": "3F", "open": false, "seats": 90, "usage": 1680 },
+    { "name": "图书馆四楼考研自习室", "floor": "4F", "open": true, "seats": 200, "usage": 5240 },
+    { "name": "图书馆四楼电子阅览室", "floor": "4F", "open": true, "seats": 60, "usage": 2450 },
+    { "name": "四号教学楼402自习室", "floor": "4F", "open": false, "seats": 70, "usage": 1320 }
+  ]
+}

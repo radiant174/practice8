@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>校园公共信息与数据展示中心 · 迷你版</title>
-  <!-- 库在前：Bootstrap 样式（固定版本号） -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 空 data: 图标：避免浏览器自动请求 favicon.ico 而在 Console 留下 404 -->
+  <link rel="icon" href="data:,">
+  <!-- 库在前：Bootstrap 5.3.3 样式（本地文件，断网也能正常显示） -->
+  <link rel="stylesheet" href="libs/bootstrap.min.css">
   <!-- 自己的样式在 Bootstrap 之后引入，保证能覆盖 -->
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -72,16 +74,37 @@
       </div>
     </section>
 
-    <!-- ========== 模块二：自习室查询（占位） ========== -->
+    <!-- ========== 模块二：自习室查询（按楼层 / 开放状态筛选） ========== -->
     <section id="study-room" class="mb-5">
       <h2 class="h4">自习室查询</h2>
-      <div class="placeholder-note">占位</div>
+
+      <!-- 数据的三种状态（加载中 / 空数据 / 加载失败）都显示在这里 -->
+      <p id="status" class="alert alert-warning" hidden></p>
+
+      <div id="study-filters" class="d-flex flex-wrap gap-2 align-items-center mb-3">
+        <span class="text-muted small">楼层</span>
+        <div class="btn-group btn-group-sm" role="group" aria-label="按楼层筛选">
+          <button type="button" class="btn btn-outline-primary active" data-group="floor" data-filter="全部">全部</button>
+          <button type="button" class="btn btn-outline-primary" data-group="floor" data-filter="2F">2F</button>
+          <button type="button" class="btn btn-outline-primary" data-group="floor" data-filter="3F">3F</button>
+          <button type="button" class="btn btn-outline-primary" data-group="floor" data-filter="4F">4F</button>
+        </div>
+        <span class="text-muted small ms-2">开放状态</span>
+        <div class="btn-group btn-group-sm" role="group" aria-label="按开放状态筛选">
+          <button type="button" class="btn btn-outline-primary active" data-group="status" data-filter="全部">全部</button>
+          <button type="button" class="btn btn-outline-primary" data-group="status" data-filter="开放中">开放中</button>
+          <button type="button" class="btn btn-outline-primary" data-group="status" data-filter="已关闭">已关闭</button>
+        </div>
+      </div>
+
+      <ul id="study-list" class="list-group"></ul>
     </section>
 
-    <!-- ========== 模块三：使用统计（占位） ========== -->
+    <!-- ========== 模块三：使用统计（ECharts 柱状图） ========== -->
     <section id="stats" class="mb-5">
       <h2 class="h4">使用统计</h2>
-      <div class="placeholder-note">占位</div>
+      <p id="data-source" class="text-muted small mb-2" hidden></p>
+      <div id="usage-chart" class="chart-box"></div>
     </section>
 
     <!-- ========== 模块四：校园三维（占位） ========== -->
@@ -94,11 +117,13 @@
   <footer class="site-footer">
     <div class="container">
       <p class="mb-1">《软件开发综合实践》课堂案例复现 · 迷你版校园公共信息与数据展示中心</p>
-      <p class="mb-0 small">数据来源：课程教学演示数据（非真实统计） · Bootstrap 5.3.3（CDN）</p>
+      <p class="mb-0 small">数据来源：课程教学演示数据（非真实统计） · 本地库文件 Bootstrap 5.3.3 / ECharts 5.6.0</p>
     </div>
   </footer>
 
-  <!-- 库在前，自己的代码在后 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 库在前，自己的代码在后：Bootstrap 与 ECharts 都用本地文件，版本号见 README -->
+  <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

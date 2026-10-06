@@ -68,6 +68,15 @@ section[id] {
   padding: 14px 16px;
 }
 
+/* ---------- 图表容器：不给高度图表就不显示 ---------- */
+.chart-box {
+  height: 360px;
+  background-color: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px;
+}
+
 /* ---------- 页脚 ---------- */
 .site-footer {
   background-color: #fff;
