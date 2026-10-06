@@ -1,0 +1,80 @@
+/* 校园公共信息与数据展示中心 · 迷你版 —— 自定义样式
+   引入顺序：Bootstrap 5.3.3 之后引入本文件，才能覆盖框架默认样式。 */
+
+/* ---------- 全局 ---------- */
+:root {
+  --brand: #0b5ed7;          /* 主色（与 Bootstrap primary 呼应） */
+  --brand-dark: #0a4fb5;
+  --ink: #2b3445;            /* 正文 */
+  --muted: #6b7280;          /* 次要文字 */
+  --line: #e5e7eb;           /* 分隔线 */
+  --paper: #f7f8fa;          /* 页面底色 */
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+  line-height: 1.7;
+}
+
+/* 锚点跳转时给吸顶导航留出空间，避免标题被导航遮住 */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* ---------- 导航 ---------- */
+.navbar-brand {
+  color: var(--brand);
+  letter-spacing: 0.02em;
+}
+
+.navbar .nav-link {
+  color: var(--ink);
+}
+
+.navbar .nav-link:hover {
+  color: var(--brand);
+}
+
+/* 当前所在模块高亮：低成本、高效果的整合感来源 */
+.navbar .nav-link.active {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* ---------- 卡片 ---------- */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(11, 94, 215, 0.16);
+}
+
+.card .card-title {
+  color: var(--brand-dark);
+}
+
+/* ---------- 占位区（骨架阶段的临时内容） ---------- */
+.placeholder-note {
+  background-color: #fff;
+  border: 1px dashed var(--line);
+  border-left: 4px solid var(--brand);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+  background-color: #fff;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}

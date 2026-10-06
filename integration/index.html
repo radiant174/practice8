@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校园公共信息与数据展示中心 · 迷你版</title>
+  <!-- 库在前：Bootstrap 样式（固定版本号） -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 自己的样式在 Bootstrap 之后引入，保证能覆盖 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ========== 统一入口：导航栏（四个模块入口） ========== -->
+  <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top" aria-label="主导航">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">校园信息中心</a>
+
+      <!-- 窄屏折叠按钮：由 Bootstrap 的 Collapse 插件控制 -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="展开或收起导航">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#home">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="#study-room">自习室</a></li>
+          <li class="nav-item"><a class="nav-link" href="#stats">统计</a></li>
+          <li class="nav-item"><a class="nav-link" href="#three-d">校园三维</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <!-- ========== 模块一：首页（Bootstrap 栅格卡片） ========== -->
+    <section id="home" class="mb-5">
+      <h1 class="h3 mb-1">校园公共信息与数据展示中心</h1>
+      <p class="text-muted">
+        迷你版综合原型 · 整合 HTML/CSS、Bootstrap、原生 JavaScript、图表库与三维场景五个模块。
+      </p>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-title h5">自习室查询</h2>
+              <p class="card-text">占位</p>
+              <a href="#study-room" class="btn btn-primary mt-auto">进入自习室</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-title h5">使用统计</h2>
+              <p class="card-text">占位</p>
+              <a href="#stats" class="btn btn-primary mt-auto">进入统计</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-title h5">校园三维导览</h2>
+              <p class="card-text">占位</p>
+              <a href="#three-d" class="btn btn-primary mt-auto">进入三维区</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 模块二：自习室查询（占位） ========== -->
+    <section id="study-room" class="mb-5">
+      <h2 class="h4">自习室查询</h2>
+      <div class="placeholder-note">占位</div>
+    </section>
+
+    <!-- ========== 模块三：使用统计（占位） ========== -->
+    <section id="stats" class="mb-5">
+      <h2 class="h4">使用统计</h2>
+      <div class="placeholder-note">占位</div>
+    </section>
+
+    <!-- ========== 模块四：校园三维（占位） ========== -->
+    <section id="three-d" class="mb-5">
+      <h2 class="h4">校园三维导览</h2>
+      <div class="placeholder-note">占位</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="mb-1">《软件开发综合实践》课堂案例复现 · 迷你版校园公共信息与数据展示中心</p>
+      <p class="mb-0 small">数据来源：课程教学演示数据（非真实统计） · Bootstrap 5.3.3（CDN）</p>
+    </div>
+  </footer>
+
+  <!-- 库在前，自己的代码在后 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
