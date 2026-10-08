@@ -29,7 +29,7 @@
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="#home">首页</a></li>
           <li class="nav-item"><a class="nav-link" href="#study-room">自习室</a></li>
           <li class="nav-item"><a class="nav-link" href="#stats">统计</a></li>
-          <li class="nav-item"><a class="nav-link" href="#three-d">校园三维</a></li>
+          <li class="nav-item"><a class="nav-link" href="three-d/scene.html">校园三维</a></li>
         </ul>
       </div>
     </div>
@@ -48,7 +48,7 @@
           <div class="card h-100">
             <div class="card-body d-flex flex-column">
               <h2 class="card-title h5">自习室查询</h2>
-              <p class="card-text">占位</p>
+              <p class="card-text">按楼层与开放状态筛选自习室，共 8 间，数据来自 data/data.json。</p>
               <a href="#study-room" class="btn btn-primary mt-auto">进入自习室</a>
             </div>
           </div>
@@ -57,7 +57,7 @@
           <div class="card h-100">
             <div class="card-body d-flex flex-column">
               <h2 class="card-title h5">使用统计</h2>
-              <p class="card-text">占位</p>
+              <p class="card-text">各自习室使用量柱状图，带标题、单位与数据来源。</p>
               <a href="#stats" class="btn btn-primary mt-auto">进入统计</a>
             </div>
           </div>
@@ -66,8 +66,8 @@
           <div class="card h-100">
             <div class="card-body d-flex flex-column">
               <h2 class="card-title h5">校园三维导览</h2>
-              <p class="card-text">占位</p>
-              <a href="#three-d" class="btn btn-primary mt-auto">进入三维区</a>
+              <p class="card-text">独立子页面展示校园立体场景，可拖动旋转与缩放。</p>
+              <a href="three-d/scene.html" class="btn btn-primary mt-auto">进入三维导览</a>
             </div>
           </div>
         </div>
@@ -78,22 +78,22 @@
     <section id="study-room" class="mb-5">
       <h2 class="h4">自习室查询</h2>
 
-      <!-- 数据的三种状态（加载中 / 空数据 / 加载失败）都显示在这里 -->
-      <p id="status" class="alert alert-warning" hidden></p>
+      <!-- 数据的三种状态（加载中 / 空数据 / 加载失败）都显示在这里，读屏软件也会播报 -->
+      <p id="status" class="alert alert-warning" role="status" aria-live="polite" hidden></p>
 
       <div id="study-filters" class="d-flex flex-wrap gap-2 align-items-center mb-3">
         <span class="text-muted small">楼层</span>
         <div class="btn-group btn-group-sm" role="group" aria-label="按楼层筛选">
-          <button type="button" class="btn btn-outline-primary active" data-group="floor" data-filter="全部">全部</button>
-          <button type="button" class="btn btn-outline-primary" data-group="floor" data-filter="2F">2F</button>
-          <button type="button" class="btn btn-outline-primary" data-group="floor" data-filter="3F">3F</button>
-          <button type="button" class="btn btn-outline-primary" data-group="floor" data-filter="4F">4F</button>
+          <button type="button" class="btn btn-outline-primary active" aria-pressed="true" data-group="floor" data-filter="全部">全部</button>
+          <button type="button" class="btn btn-outline-primary" aria-pressed="false" data-group="floor" data-filter="2F">2F</button>
+          <button type="button" class="btn btn-outline-primary" aria-pressed="false" data-group="floor" data-filter="3F">3F</button>
+          <button type="button" class="btn btn-outline-primary" aria-pressed="false" data-group="floor" data-filter="4F">4F</button>
         </div>
         <span class="text-muted small ms-2">开放状态</span>
         <div class="btn-group btn-group-sm" role="group" aria-label="按开放状态筛选">
-          <button type="button" class="btn btn-outline-primary active" data-group="status" data-filter="全部">全部</button>
-          <button type="button" class="btn btn-outline-primary" data-group="status" data-filter="开放中">开放中</button>
-          <button type="button" class="btn btn-outline-primary" data-group="status" data-filter="已关闭">已关闭</button>
+          <button type="button" class="btn btn-outline-primary active" aria-pressed="true" data-group="status" data-filter="全部">全部</button>
+          <button type="button" class="btn btn-outline-primary" aria-pressed="false" data-group="status" data-filter="开放中">开放中</button>
+          <button type="button" class="btn btn-outline-primary" aria-pressed="false" data-group="status" data-filter="已关闭">已关闭</button>
         </div>
       </div>
 
@@ -104,13 +104,22 @@
     <section id="stats" class="mb-5">
       <h2 class="h4">使用统计</h2>
       <p id="data-source" class="text-muted small mb-2" hidden></p>
-      <div id="usage-chart" class="chart-box"></div>
+      <div id="usage-chart" class="chart-box" role="img"
+           aria-label="各自习室使用量柱状图：横轴为自习室名称，纵轴为使用人次"></div>
     </section>
 
-    <!-- ========== 模块四：校园三维（占位） ========== -->
+    <!-- ========== 模块四：校园三维（独立子页面，不拖慢主页面） ========== -->
     <section id="three-d" class="mb-5">
       <h2 class="h4">校园三维导览</h2>
-      <div class="placeholder-note">占位</div>
+      <div class="card">
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div>
+            <p class="mb-1">独立子页面 three-d/scene.html：教学楼、旗杆、路灯与绿化的立体场景，可拖动旋转、滚轮缩放。</p>
+            <p class="mb-0 text-muted small">三维场景不放进主页面，避免拖慢首屏加载；页面内可返回首页。</p>
+          </div>
+          <a class="btn btn-primary flex-shrink-0" href="three-d/scene.html">进入校园三维导览</a>
+        </div>
+      </div>
     </section>
   </main>
 

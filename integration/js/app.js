@@ -5,7 +5,8 @@
 const state = {
   data: null,        // data.json 的内容
   floor: '全部',      // 楼层筛选条件
-  status: '全部'      // 开放状态筛选条件
+  status: '全部',     // 开放状态筛选条件
+  empty: false       // 数据合法但没有任何记录
 };
 
 const els = {
@@ -58,7 +59,7 @@ const renderList = () => {
 
   const rooms = visibleRooms();
   if (rooms.length === 0) {
-    els.list.appendChild(emptyItem('没有符合条件的自习室。'));
+    els.list.appendChild(emptyItem(state.empty ? '暂无自习室数据。' : '没有符合条件的自习室。'));
     return;
   }
 
@@ -100,7 +101,10 @@ els.filters.addEventListener('click', (event) => {
   }
 
   els.filters.querySelectorAll('button[data-group="' + group + '"]').forEach(item => {
-    item.classList.toggle('active', item === button);
+    const isCurrent = item === button;
+    item.classList.toggle('active', isCurrent);
+    // 选中状态不只靠颜色：同步 aria-pressed，读屏软件与键盘用户都能感知
+    item.setAttribute('aria-pressed', String(isCurrent));
   });
 
   renderList();
@@ -169,7 +173,10 @@ const loadData = async () => {
     const data = await response.json();
 
     if (!Array.isArray(data.rooms) || data.rooms.length === 0) {
+      state.data = data;      // 数据文件本身是合法的，只是没有记录
+      state.empty = true;
       setStatus('暂无数据：data/data.json 中没有自习室记录。', 'warning');
+      els.chart.textContent = '暂无数据，无法绘制图表。';   // 图表区域也要有提示，不能是一片空白
       renderList();
       return;
     }
@@ -182,7 +189,7 @@ const loadData = async () => {
     renderChart(data);
   } catch (error) {
     // 断网、文件缺失、JSON 格式错误都会走到这里：给明确提示，而不是白屏
-    setStatus('数据加载失败：' + error.message + '。请确认 data/data.json 存在，并用本地服务器打开本页（双击 index.html 会被浏览器的 fetch 安全策略拦截）。', 'danger');
+    setStatus('数据加载失败：' + error.message + '。请确认 data/data.json 存在、本地服务器已启动；直接双击 index.html 时浏览器的安全策略会拦截 fetch。', 'danger');
     els.chart.textContent = '数据未加载，暂无图表。';
     renderList();
   }

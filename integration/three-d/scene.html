@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校园三维导览 · 校园公共信息与数据展示中心</title>
+  <link rel="icon" href="data:,">
+  <style>
+    /* 三维页是独立子页面：只放场景与一层悬浮说明，样式就地写，不引入主页面的 CSS */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+      background: #aee3f7;
+      overflow: hidden;
+    }
+    #scene-root { position: fixed; inset: 0; }
+    #scene-root canvas { display: block; }
+
+    #hud {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      max-width: min(340px, calc(100vw - 32px));
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 6px 18px rgba(20, 50, 79, 0.16);
+      line-height: 1.65;
+    }
+    #hud h1 { margin: 0 0 6px; font-size: 1.1rem; color: #14324f; }
+    #hud p { margin: 0 0 8px; font-size: 0.86rem; color: #4b5563; }
+    #hud .back {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #0b5ed7;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.86rem;
+    }
+    #hud .back:hover { background: #0a4fb5; }
+    #scene-status {
+      margin: 8px 0 0;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #fdecea;
+      color: #b3261e;
+      font-size: 0.82rem;
+    }
+    :focus-visible { outline: 2px solid #0b5ed7; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <!-- 场景画布挂载点；由 scene.js 往里插入 canvas -->
+  <div id="scene-root"></div>
+
+  <div id="hud">
+    <h1>校园三维导览</h1>
+    <p>
+      场景内容：地面与道路、教学楼、旗杆与旗帜、路灯和绿化树。<br>
+      操作：鼠标左键拖动旋转，滚轮缩放，右键拖动平移。
+    </p>
+    <a class="back" href="../index.html">← 返回首页</a>
+    <p id="scene-status" role="status" aria-live="polite" hidden></p>
+  </div>
+
+  <noscript>
+    <p style="position:fixed;bottom:16px;left:16px;background:#fff;padding:10px 14px;border-radius:8px;">
+      当前浏览器关闭了 JavaScript，无法显示三维场景。请直接返回首页浏览其它模块。
+    </p>
+  </noscript>
+
+  <!-- 库在前，自己的代码在后：三维库与控制器都来自课堂七 -->
+  <script src="../libs/three.min.js"></script>
+  <script src="../libs/OrbitControls.js"></script>
+  <script src="scene.js"></script>
+</body>
+</html>
